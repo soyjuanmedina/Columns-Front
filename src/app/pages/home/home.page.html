@@ -35,6 +35,16 @@
   <h4 *ngIf="!_userService.user">Identificate o registrate para acceder a nuestra selección de
     artículos</h4>
 
+  <div *ngIf="!_userService.user">
+
+    <h4> Resolviendo DaVinci
+    </h4>
+    <p *ngFor="let row of rectangle">
+      <span *ngFor="let item of row">{{item}}</span>
+    </p>
+
+  </div>
+
 
 
 

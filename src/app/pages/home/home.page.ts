@@ -42,6 +42,9 @@ export class HomePage implements OnInit {
   selectedAuthor: string;
   selectedTag: string;
   isVisible = $('#searchingAccordion').is(":visible");
+  DaVinci = [70, 22, 358, 46, 12, 36, 2, 46, 12, 36, 3, 46, 12, 36, 10, 46, 4, 36, 24, 46, 2, 36, 13, 46, 2, 36, 3, 46, 2, 36, 18, 46, 2, 36, 2, 46, 2, 36, 22, 46, 2, 36, 13, 46, 2, 36, 5, 46, 2, 36, 16, 46, 2, 36, 4, 46, 2, 36, 20, 46, 2, 36, 13, 46, 2, 36, 7, 46, 2, 36, 14, 46, 2, 36, 6, 46, 2, 36, 20, 46, 2, 36, 11, 46, 4, 36, 7, 46, 8, 36, 6, 46, 12, 36, 20, 46, 2, 36, 15, 46, 2, 36, 13, 46, 2, 36, 14, 46, 2, 36, 20, 46, 2, 36, 17, 46, 2, 36, 13, 46, 2, 36, 12, 46, 2, 36, 20, 46, 2, 36, 16, 46, 2, 36, 13, 46, 2, 36, 13, 46, 2, 36, 20, 46, 2, 36, 7, 46, 9, 36, 6, 46, 9, 36, 15, 46, 2, 36, 497, 46];
+  rectangle = [];
+  cuadrado;
 
   constructor(public _articleService: ArticleService, public _userService: UserService,
     public _utilitiesService: UtilitiesService, public router: Router) {
@@ -60,7 +63,64 @@ export class HomePage implements OnInit {
     if (!this._articleService.tags) {
       this.getTags();
     }
+    this.resuelveVinci(this.DaVinci);
+    this.solveDaVinci(this.DaVinci);
   }
+
+  solveDaVinci(daVinci) {
+    let width = daVinci[0];
+    let high = daVinci[1];
+    for (var k = 2; k < daVinci.length; k + 2) {
+      let asci = String.fromCodePoint(daVinci[k + 1]);
+    }
+    for (var i = 0; i < high; i++) {
+      this.rectangle[i] = [];
+      for (var j = 0; j < width; j++) {
+        this.rectangle[i][j] = 'asci';
+      }
+    }
+  }
+
+  resuelveVinci(vinci) {
+    let pairs = [];
+    let pair = [];
+    vinci.forEach((element, index) => {
+      pair.push(element);
+      if (index % 2 != 0) {
+        pairs.push(pair);
+        pair = [];
+      }
+    });
+
+    pairs.forEach((element, index) => {
+      if (index == 0) {
+        this.pintaCuadrado(element);
+      } else {
+        this.rellenaConAsci(element);
+      }
+    });
+  }
+
+  pintaCuadrado(cuadrado) {
+    this.cuadrado = [];
+    let alto = cuadrado[1];
+    let ancho = cuadrado[0];
+    for (var i = 0; i < alto; i++) {
+      this.cuadrado[i] = [];
+      for (var j = 0; j < ancho; j++) {
+        this.cuadrado[i][j] = 'Q';
+      }
+    }
+  }
+
+  rellenaConAsci(pair) {
+    let cantidad = pair[0];
+    let asci = pair[1];
+    var i = String.fromCodePoint(asci);
+    // console.log(i);
+  }
+
+
 
   changeVisibility() {
     this.isVisible = !this.isVisible;
