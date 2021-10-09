@@ -71,25 +71,21 @@ export class HomePage implements OnInit {
     let width = daVinci[0];
     let high = daVinci[1];
     let asci;
-    let i = 0;
-    let j = 0;
-    for (var k = 2; k < daVinci.length; k = k + 2) {
-      asci = String.fromCodePoint(daVinci[k + 1]);
-      let n = 0;
-      while (n < daVinci[k]) {
-        while (i < high && n < daVinci[k]) {
-          this.rectangle[i] = [];
-          while (j < width && n < daVinci[k]) {
-            this.rectangle[i][j] = asci;
-            j++;
-            n++;
-          }
-          j = 0;
-          i++;
+    let k = 2;
+    let n = 1;
+    for (var i = 0; i < high; i++) {
+      this.rectangle[i] = [];
+      for (var j = 0; j < width; j++) {
+        if (n < daVinci[k]) {
+          asci = String.fromCodePoint(daVinci[k + 1]);
+          n++;
+        } else {
+          n = 1;
+          k = k + 2;
         }
+        this.rectangle[i][j] = asci;
       }
     }
-
   }
 
   resuelveVinci(vinci) {

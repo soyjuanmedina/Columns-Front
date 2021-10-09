@@ -3,7 +3,7 @@
 Un proyecto para leer diferentes columnistas en un solo lugar.
 
 
-## Solvind DaVinci
+## Solving DaVinci
 
 Entre las últimas pertenecncias del gran genio renacentista se encontró un texto adherido a una caja que explicaba el último juego que el pintor dejaría para generaciones futuras. Con los últimos avances en análisis de documentos ahora se ha descubierto que el texto reza así. 
 
@@ -28,23 +28,3 @@ javier.velez.reyes@gmail.com
 
 ¿Te animas a participar?
 Feliz reto!
-
-
-
-1002691904
-
-
-let width = daVinci[0];
-    let high = daVinci[1];
-    for (var i = 0; i < width; i++) {
-      this.rectangle[i] = [];
-      for (var j = 0; j < high; j++) {
-        for (var k = 2; k < daVinci.length; k + 2) {
-          let asci = String.fromCodePoint(daVinci[k + 1]);
-          for (var n = 0; n < daVinci[k]; n++) {
-            this.rectangle[i][j] = asci;
-          }
-        }
-        this.rectangle[i][j] = 'asci';
-      }
-    }
