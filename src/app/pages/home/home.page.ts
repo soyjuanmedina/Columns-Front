@@ -63,22 +63,33 @@ export class HomePage implements OnInit {
     if (!this._articleService.tags) {
       this.getTags();
     }
-    this.resuelveVinci(this.DaVinci);
+    // this.resuelveVinci(this.DaVinci);
     this.solveDaVinci(this.DaVinci);
   }
 
   solveDaVinci(daVinci) {
     let width = daVinci[0];
     let high = daVinci[1];
-    for (var k = 2; k < daVinci.length; k + 2) {
-      let asci = String.fromCodePoint(daVinci[k + 1]);
-    }
-    for (var i = 0; i < high; i++) {
-      this.rectangle[i] = [];
-      for (var j = 0; j < width; j++) {
-        this.rectangle[i][j] = 'asci';
+    let asci;
+    let i = 0;
+    let j = 0;
+    for (var k = 2; k < daVinci.length; k = k + 2) {
+      asci = String.fromCodePoint(daVinci[k + 1]);
+      let n = 0;
+      while (n < daVinci[k]) {
+        while (i < high && n < daVinci[k]) {
+          this.rectangle[i] = [];
+          while (j < width && n < daVinci[k]) {
+            this.rectangle[i][j] = asci;
+            j++;
+            n++;
+          }
+          j = 0;
+          i++;
+        }
       }
     }
+
   }
 
   resuelveVinci(vinci) {
